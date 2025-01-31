@@ -1,0 +1,351 @@
+about:
+  date: January 31, 2025 14:11:31
+  recent_changes: works with modified safrs-react-admin
+  version: 0.0.0
+api_root: '{http_type}://{swagger_host}:{port}/{api}'
+authentication: '{system-default}'
+info:
+  number_relationships: 11
+  number_tables: 12
+info_toggle_checked: true
+resources:
+  Airline:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: country_of_origin
+    - name: iata_code
+    - name: icao_code
+    - name: id
+    description: Model representing airlines with basic identification and country
+      of origin.
+    info_list: Model representing airlines with basic identification and country of
+      origin.
+    type: Airline
+    user_key: name
+  Airport:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: city
+    - name: country
+    - name: iata_code
+    - name: icao_code
+    - name: id
+    description: Model representing airports with basic information such as name,
+      city, and country.
+    info_list: Model representing airports with basic information such as name, city,
+      and country.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - airport_id
+      name: BaggageClaimList
+      resource: BaggageClaim
+    - direction: tomany
+      fks:
+      - destination_airport_id
+      name: FlightList
+      resource: Flight
+    - direction: tomany
+      fks:
+      - origin_airport_id
+      name: originFlightList
+      resource: Flight
+    - direction: tomany
+      fks:
+      - airport_id
+      name: GateList
+      resource: Gate
+    - direction: tomany
+      fks:
+      - airport_id
+      name: RunwayList
+      resource: Runway
+    - direction: tomany
+      fks:
+      - airport_id
+      name: TerminalList
+      resource: Terminal
+    type: Airport
+    user_key: name
+  BaggageClaim:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: airport_id
+    - name: location
+    - name: capacity
+    description: Model representing baggage claim areas at airports with location
+      and capacity details.
+    info_list: Model representing baggage claim areas at airports with location and
+      capacity details.
+    tab_groups:
+    - direction: toone
+      fks:
+      - airport_id
+      name: airport
+      resource: Airport
+    type: BaggageClaim
+    user_key: id
+  Booking:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: customer_id
+    - name: flight_id
+    - name: seat_type
+    - name: booking_date
+      type: DATETIME
+    description: Model representing flight bookings made by customers, including seat
+      type and booking date.
+    info_list: Model representing flight bookings made by customers, including seat
+      type and booking date.
+    tab_groups:
+    - direction: toone
+      fks:
+      - customer_id
+      name: customer
+      resource: Customer
+    - direction: toone
+      fks:
+      - flight_id
+      name: flight
+      resource: Flight
+    type: Booking
+    user_key: id
+  Cargo:
+    attributes:
+    - label: ' description*'
+      name: description
+      search: true
+      sort: true
+    - name: flight_id
+    - name: airway_bill_number
+    - name: weight
+    - name: id
+    description: Model representing cargo items loaded on flights with weight and
+      descriptive details.
+    info_list: Model representing cargo items loaded on flights with weight and descriptive
+      details.
+    tab_groups:
+    - direction: toone
+      fks:
+      - flight_id
+      name: flight
+      resource: Flight
+    type: Cargo
+    user_key: description
+  Customer:
+    attributes:
+    - label: ' first_name*'
+      name: first_name
+      search: true
+      sort: true
+    - name: last_name
+    - name: email
+    - name: phone_number
+    - name: id
+    description: Model representing customers/passengers with personal contact information.
+    info_list: Model representing customers/passengers with personal contact information.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - customer_id
+      name: BookingList
+      resource: Booking
+    type: Customer
+    user_key: first_name
+  Flight:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: destination_airport_id
+    - name: origin_airport_id
+    - name: airline
+    - name: flight_number
+    - name: departure_time
+      type: DATETIME
+    - name: arrival_time
+      type: DATETIME
+    description: Model representing flights, including details about the airline,
+      flight number, and scheduled times.
+    info_list: Model representing flights, including details about the airline, flight
+      number, and scheduled times.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - flight_id
+      name: BookingList
+      resource: Booking
+    - direction: tomany
+      fks:
+      - flight_id
+      name: CargoList
+      resource: Cargo
+    - direction: toone
+      fks:
+      - destination_airport_id
+      name: destination_airport
+      resource: Airport
+    - direction: toone
+      fks:
+      - origin_airport_id
+      name: origin_airport
+      resource: Airport
+    type: Flight
+    user_key: id
+  Gate:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: airport_id
+    - name: gate_number
+    description: Model representing gates at airports where flights embark and disembark.
+    info_list: Model representing gates at airports where flights embark and disembark.
+    tab_groups:
+    - direction: toone
+      fks:
+      - airport_id
+      name: airport
+      resource: Airport
+    type: Gate
+    user_key: id
+  Lounge:
+    attributes:
+    - label: ' name*'
+      name: name
+      search: true
+      sort: true
+    - name: terminal_id
+    - name: capacity
+    - name: id
+    description: Model representing lounges within airport terminals, including amenities
+      like capacity.
+    info_list: Model representing lounges within airport terminals, including amenities
+      like capacity.
+    tab_groups:
+    - direction: toone
+      fks:
+      - terminal_id
+      name: terminal
+      resource: Terminal
+    type: Lounge
+    user_key: name
+  Maintenance:
+    attributes:
+    - label: ' description*'
+      name: description
+      search: true
+      sort: true
+    - name: runway_id
+    - name: maintenance_date
+      type: DATETIME
+    - name: id
+    description: Model representing maintenance activities performed on runways with
+      description and date.
+    info_list: Model representing maintenance activities performed on runways with
+      description and date.
+    tab_groups:
+    - direction: toone
+      fks:
+      - runway_id
+      name: runway
+      resource: Runway
+    type: Maintenance
+    user_key: description
+  Runway:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: airport_id
+    - name: length_ft
+    - name: width_ft
+    - name: surface
+    description: Model representing airport runways with details like length, width,
+      and surface type.
+    info_list: Model representing airport runways with details like length, width,
+      and surface type.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - runway_id
+      name: MaintenanceList
+      resource: Maintenance
+    - direction: toone
+      fks:
+      - airport_id
+      name: airport
+      resource: Airport
+    type: Runway
+    user_key: id
+  Terminal:
+    attributes:
+    - label: ' id*'
+      name: id
+      search: true
+      sort: true
+    - name: airport_id
+    - name: terminal_number
+    description: Model representing airport terminals with an identifier linked to
+      an airport.
+    info_list: Model representing airport terminals with an identifier linked to an
+      airport.
+    tab_groups:
+    - direction: tomany
+      fks:
+      - terminal_id
+      name: LoungeList
+      resource: Lounge
+    - direction: toone
+      fks:
+      - airport_id
+      name: airport
+      resource: Airport
+    type: Terminal
+    user_key: id
+settings:
+  HomeJS: /admin-app/home.js
+  max_list_columns: 8
+  style_guide:
+    applicationLocales:
+    - en
+    - es
+    currency_symbol: $
+    currency_symbol_position: left
+    date_format: LL
+    decimal_max: '1000000000'
+    decimal_min: '0'
+    decimal_separator: .
+    detail_mode: tab
+    edit_on_mode: dblclick
+    exclude_listpicker: false
+    include_translation: 'false'
+    keycloak_client_id: alsclient
+    keycloak_realm: kcals
+    keycloak_url: http://localhost:8080
+    locale: en
+    max_decimal_digits: '4'
+    min_decimal_digits: '2'
+    new_mode: dialog
+    pick_style: list
+    row_height: small,
+    serviceType: OntimizeEE
+    startSessionPath: /auth/login
+    style: light
+    thousand_separator: ','
+    use_keycloak: 'false'

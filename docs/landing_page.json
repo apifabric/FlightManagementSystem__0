@@ -1,0 +1,218 @@
+{
+    "name": "Skyport International",
+    "logo": {
+        "Type": "Logo",
+        "name": "Skyport Logo",
+        "description": "The logo of Skyport International, featuring a stylized airplane taking off."
+    },
+    "sections": [
+        {
+            "title": "Welcome to Your Gateway to the World",
+            "subtitle": "Experience the Skyport Difference",
+            "name": "hero-section",
+            "label": "Home",
+            "content": "Welcome to Skyport International, where every journey begins. Experience unparalleled service, world-class amenities, and seamless travel experience. Book your flight today!",
+            "order": 1,
+            "Type": "Hero",
+            "images": [
+                {
+                    "Type": "Hero",
+                    "name": "Skyport Terminal Overview",
+                    "description": "A stunning aerial view of Skyport International's main terminal."
+                }
+            ]
+        },
+        {
+            "title": "About Skyport International",
+            "subtitle": "Commitment to Excellence",
+            "name": "about-section",
+            "label": "About",
+            "content": "Skyport International has been a beacon for travelers worldwide since 1980. Our commitment to excellence and innovation ensures a seamless journey from start to finish.",
+            "order": 2,
+            "Type": "About",
+            "images": [
+                {
+                    "Type": "Background",
+                    "name": "History Showcase",
+                    "description": "Historical images showcasing the evolution of Skyport International over the years."
+                }
+            ]
+        },
+        {
+            "title": "Our Services",
+            "subtitle": "What We Offer",
+            "name": "services-section",
+            "label": "Services",
+            "content": "1. **Lounge Services** - Relax in comfort before your flight.  \n2. **Fast Track Security** - Speed through security with our VIP services.  \n3. **Baggage Services** - Ensure your luggage travels safely and efficiently.",
+            "order": 3,
+            "Type": "Services",
+            "images": [
+                {
+                    "Type": "Icon",
+                    "name": "Lounge Icon",
+                    "description": "Icon representing the lounge services at Skyport."
+                }
+            ]
+        },
+        {
+            "title": "Travel Experiences",
+            "subtitle": "See What Awaits You",
+            "name": "gallery-section",
+            "label": "Gallery",
+            "content": "Explore our facilities through our gallery. Discover the breathtaking architecture and modern amenities that make traveling through Skyport unforgettable.",
+            "order": 4,
+            "Type": "Gallery",
+            "images": [
+                {
+                    "Type": "Gallery",
+                    "name": "Lounge Area",
+                    "description": "A photo of Skyport's luxurious lounge area."
+                }
+            ]
+        },
+        {
+            "title": "Our Team",
+            "subtitle": "Meet the People Behind the Scenes",
+            "name": "team-section",
+            "label": "Team",
+            "content": "Our professional and dedicated team is always ready to assist. Learn more about the individuals who ensure your journey is smooth.",
+            "order": 5,
+            "Type": "Team",
+            "images": [
+                {
+                    "Type": "Headshot",
+                    "name": "John Doe - Airport Manager",
+                    "description": "The Airport Manager, John Doe, at Skyport International."
+                }
+            ]
+        },
+        {
+            "title": "Latest News from Skyport",
+            "subtitle": "Stay Updated",
+            "name": "news-section",
+            "label": "News",
+            "content": "Stay informed with the latest updates from Skyport International. Read about the newest advancements and innovations at our airport.",
+            "order": 6,
+            "Type": "News",
+            "images": [
+                {
+                    "Type": "Infographic",
+                    "name": "New Developments",
+                    "description": "Infographic showing new developments at Skyport International."
+                }
+            ]
+        },
+        {
+            "title": "Testimonials",
+            "subtitle": "Hear From Our Travelers",
+            "name": "testimonials-section",
+            "label": "Testimonials",
+            "content": "\"Skyport exceeded all my expectations. The service was impeccable!\" - **Jane Smith**  \n\"Traveling through Skyport was a breeze. Highly recommend!\" - **Carlos Ramirez**",
+            "order": 7,
+            "Type": "Testimonials",
+            "images": [
+                {
+                    "Type": "Testimonial",
+                    "name": "Jane Smith Testimonial",
+                    "description": "Photo of traveler Jane Smith."
+                }
+            ]
+        },
+        {
+            "title": "Contact Us",
+            "subtitle": "We're Here to Help",
+            "name": "contact-section",
+            "label": "Contact",
+            "content": "For inquiries and assistance, please contact us via phone at (555) 012-3456 or email at info@skyportintl.com. Our support team is available 24/7.",
+            "order": 8,
+            "Type": "Contact",
+            "images": [
+                {
+                    "Type": "Map",
+                    "name": "Airport Location Map",
+                    "description": "Map showing the location of Skyport International."
+                }
+            ]
+        },
+        {
+            "title": "Have Questions?",
+            "subtitle": "Find Your Answers Here",
+            "name": "faq-section",
+            "label": "FAQ",
+            "content": "**Q**: What are the check-in times?  \n**A**: Check-in opens 3 hours and closes 1 hour before departure for international flights.  \n\n**Q**: Is there Wi-Fi available at the airport?  \n**A**: Yes, complimentary WiFi is available throughout the airport.",
+            "order": 9,
+            "Type": "FAQ",
+            "images": [
+                {
+                    "Type": "Icon",
+                    "name": "FAQ Icon",
+                    "description": "Icon representing Frequently Asked Questions."
+                }
+            ]
+        },
+        {
+            "title": "Plan Your Visit",
+            "subtitle": "Navigate Your Way",
+            "name": "travel-planning-section",
+            "label": "Plan Your Visit",
+            "content": "Discover transportation options, find terminal maps, and get tips for a smooth trip. We've curated information to make your visit to Skyport International smooth and stress-free.",
+            "order": 10,
+            "Type": "CallToAction",
+            "images": [
+                {
+                    "Type": "Map",
+                    "name": "Terminal Map",
+                    "description": "Detailed map of Skyport International terminals."
+                }
+            ]
+        },
+        {
+            "title": "Stay Connected",
+            "subtitle": "Be Part of Our Community",
+            "name": "newsletter-section",
+            "label": "Newsletter",
+            "content": "Join our newsletter to receive exclusive travel tips and airport news straight to your inbox.",
+            "order": 11,
+            "Type": "CallToAction",
+            "images": [
+                {
+                    "Type": "Promotional",
+                    "name": "Newsletter Promotion",
+                    "description": "Image encouraging visitors to sign up for the Skyport newsletter."
+                }
+            ]
+        },
+        {
+            "title": "Skyport Connections",
+            "subtitle": "Explore Our Network",
+            "name": "destinations-section",
+            "label": "Destinations",
+            "content": "Skyport connects you to over 150 destinations worldwide. Explore our network and find your next adventure.",
+            "order": 12,
+            "Type": "Services",
+            "images": [
+                {
+                    "Type": "Map",
+                    "name": "Global Destinations Map",
+                    "description": "A map highlighting all destinations serviced by Skyport International."
+                }
+            ]
+        },
+        {
+            "title": "Skyport International Footer",
+            "subtitle": "",
+            "name": "footer-section",
+            "label": "Footer",
+            "content": "&copy; 2023 Skyport International. | [Privacy Policy]() | [Terms of Service]() | [Sitemap]()",
+            "order": 13,
+            "Type": "Footer",
+            "images": [
+                {
+                    "Type": "Icon",
+                    "name": "Social Media Icons",
+                    "description": "Icons for social media links in the footer."
+                }
+            ]
+        }
+    ]
+}
