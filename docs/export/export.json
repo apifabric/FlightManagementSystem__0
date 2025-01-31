@@ -1,0 +1,53 @@
+{
+    "rules": [],
+    "models": [
+        {
+            "classname": "Airline",
+            "code": "class Airline(Base):  # type: ignore\n    \"\"\"\n    description: Model representing airlines with basic identification and country of origin.\n    \"\"\"\n    __tablename__ = 'airline'\n    _s_collection_name = 'Airline'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    name = Column(String)\n    country_of_origin = Column(String)\n    iata_code = Column(String)\n    icao_code = Column(String)"
+        },
+        {
+            "classname": "Airport",
+            "code": "class Airport(Base):  # type: ignore\n    \"\"\"\n    description: Model representing airports with basic information such as name, city, and country.\n    \"\"\"\n    __tablename__ = 'airport'\n    _s_collection_name = 'Airport'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    name = Column(String)\n    city = Column(String)\n    country = Column(String)\n    iata_code = Column(String)\n    icao_code = Column(String)\n\n    # parent relationships (access parent)\n\n    # child relationships (access children)\n    BaggageClaimList : Mapped[List[\"BaggageClaim\"]] = relationship(back_populates=\"airport\")\n    FlightList : Mapped[List[\"Flight\"]] = relationship(foreign_keys='[Flight.destination_airport_id]', back_populates=\"destination_airport\")\n    originFlightList : Mapped[List[\"Flight\"]] = relationship(foreign_keys='[Flight.origin_airport_id]', back_populates=\"origin_airport\")\n    GateList : Mapped[List[\"Gate\"]] = relationship(back_populates=\"airport\")\n    RunwayList : Mapped[List[\"Runway\"]] = relationship(back_populates=\"airport\")\n    TerminalList : Mapped[List[\"Terminal\"]] = relationship(back_populates=\"airport\")"
+        },
+        {
+            "classname": "Customer",
+            "code": "class Customer(Base):  # type: ignore\n    \"\"\"\n    description: Model representing customers/passengers with personal contact information.\n    \"\"\"\n    __tablename__ = 'customer'\n    _s_collection_name = 'Customer'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    first_name = Column(String)\n    last_name = Column(String)\n    email = Column(String)\n    phone_number = Column(String)\n\n    # parent relationships (access parent)\n\n    # child relationships (access children)\n    BookingList : Mapped[List[\"Booking\"]] = relationship(back_populates=\"customer\")"
+        },
+        {
+            "classname": "BaggageClaim",
+            "code": "class BaggageClaim(Base):  # type: ignore\n    \"\"\"\n    description: Model representing baggage claim areas at airports with location and capacity details.\n    \"\"\"\n    __tablename__ = 'baggage_claim'\n    _s_collection_name = 'BaggageClaim'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    airport_id = Column(ForeignKey('airport.id'))\n    location = Column(String)\n    capacity = Column(Integer)\n\n    # parent relationships (access parent)\n    airport : Mapped[\"Airport\"] = relationship(back_populates=(\"BaggageClaimList\"))"
+        },
+        {
+            "classname": "Flight",
+            "code": "class Flight(Base):  # type: ignore\n    \"\"\"\n    description: Model representing flights, including details about the airline, flight number, and scheduled times.\n    \"\"\"\n    __tablename__ = 'flight'\n    _s_collection_name = 'Flight'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    airline = Column(String)\n    flight_number = Column(String)\n    origin_airport_id = Column(ForeignKey('airport.id'))\n    destination_airport_id = Column(ForeignKey('airport.id'))\n    departure_time = Column(DateTime)\n    arrival_time = Column(DateTime)\n\n    # parent relationships (access parent)\n    destination_airport : Mapped[\"Airport\"] = relationship(foreign_keys='[Flight.destination_airport_id]', back_populates=(\"FlightList\"))\n    origin_airport : Mapped[\"Airport\"] = relationship(foreign_keys='[Flight.origin_airport_id]', back_populates=(\"originFlightList\"))\n\n    # child relationships (access children)\n    BookingList : Mapped[List[\"Booking\"]] = relationship(back_populates=\"flight\")\n    CargoList : Mapped[List[\"Cargo\"]] = relationship(back_populates=\"flight\")"
+        },
+        {
+            "classname": "Gate",
+            "code": "class Gate(Base):  # type: ignore\n    \"\"\"\n    description: Model representing gates at airports where flights embark and disembark.\n    \"\"\"\n    __tablename__ = 'gate'\n    _s_collection_name = 'Gate'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    airport_id = Column(ForeignKey('airport.id'))\n    gate_number = Column(String)\n\n    # parent relationships (access parent)\n    airport : Mapped[\"Airport\"] = relationship(back_populates=(\"GateList\"))"
+        },
+        {
+            "classname": "Runway",
+            "code": "class Runway(Base):  # type: ignore\n    \"\"\"\n    description: Model representing airport runways with details like length, width, and surface type.\n    \"\"\"\n    __tablename__ = 'runway'\n    _s_collection_name = 'Runway'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    airport_id = Column(ForeignKey('airport.id'))\n    length_ft = Column(Integer)\n    width_ft = Column(Integer)\n    surface = Column(String)\n\n    # parent relationships (access parent)\n    airport : Mapped[\"Airport\"] = relationship(back_populates=(\"RunwayList\"))\n\n    # child relationships (access children)\n    MaintenanceList : Mapped[List[\"Maintenance\"]] = relationship(back_populates=\"runway\")"
+        },
+        {
+            "classname": "Terminal",
+            "code": "class Terminal(Base):  # type: ignore\n    \"\"\"\n    description: Model representing airport terminals with an identifier linked to an airport.\n    \"\"\"\n    __tablename__ = 'terminal'\n    _s_collection_name = 'Terminal'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    airport_id = Column(ForeignKey('airport.id'))\n    terminal_number = Column(String)\n\n    # parent relationships (access parent)\n    airport : Mapped[\"Airport\"] = relationship(back_populates=(\"TerminalList\"))\n\n    # child relationships (access children)\n    LoungeList : Mapped[List[\"Lounge\"]] = relationship(back_populates=\"terminal\")"
+        },
+        {
+            "classname": "Booking",
+            "code": "class Booking(Base):  # type: ignore\n    \"\"\"\n    description: Model representing flight bookings made by customers, including seat type and booking date.\n    \"\"\"\n    __tablename__ = 'booking'\n    _s_collection_name = 'Booking'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    customer_id = Column(ForeignKey('customer.id'))\n    flight_id = Column(ForeignKey('flight.id'))\n    seat_type = Column(String)\n    booking_date = Column(DateTime)\n\n    # parent relationships (access parent)\n    customer : Mapped[\"Customer\"] = relationship(back_populates=(\"BookingList\"))\n    flight : Mapped[\"Flight\"] = relationship(back_populates=(\"BookingList\"))"
+        },
+        {
+            "classname": "Cargo",
+            "code": "class Cargo(Base):  # type: ignore\n    \"\"\"\n    description: Model representing cargo items loaded on flights with weight and descriptive details.\n    \"\"\"\n    __tablename__ = 'cargo'\n    _s_collection_name = 'Cargo'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    airway_bill_number = Column(String)\n    flight_id = Column(ForeignKey('flight.id'))\n    weight = Column(Integer)\n    description = Column(String)\n\n    # parent relationships (access parent)\n    flight : Mapped[\"Flight\"] = relationship(back_populates=(\"CargoList\"))"
+        },
+        {
+            "classname": "Lounge",
+            "code": "class Lounge(Base):  # type: ignore\n    \"\"\"\n    description: Model representing lounges within airport terminals, including amenities like capacity.\n    \"\"\"\n    __tablename__ = 'lounge'\n    _s_collection_name = 'Lounge'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    terminal_id = Column(ForeignKey('terminal.id'))\n    name = Column(String)\n    capacity = Column(Integer)\n\n    # parent relationships (access parent)\n    terminal : Mapped[\"Terminal\"] = relationship(back_populates=(\"LoungeList\"))"
+        },
+        {
+            "classname": "Maintenance",
+            "code": "class Maintenance(Base):  # type: ignore\n    \"\"\"\n    description: Model representing maintenance activities performed on runways with description and date.\n    \"\"\"\n    __tablename__ = 'maintenance'\n    _s_collection_name = 'Maintenance'  # type: ignore\n\n    id = Column(Integer, primary_key=True)\n    runway_id = Column(ForeignKey('runway.id'))\n    maintenance_date = Column(DateTime)\n    description = Column(String)\n\n    # parent relationships (access parent)\n    runway : Mapped[\"Runway\"] = relationship(back_populates=(\"MaintenanceList\"))"
+        }
+    ]
+}
